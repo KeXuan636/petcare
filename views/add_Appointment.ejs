@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Appointment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/">🐾 PetCare Journal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/user">View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+  <h3>Add Appointment</h3>
+  <form method="POST" action="/addappointment">
+    <div class="mb-3">
+      <label>Pet Name</label>
+      <input type="text" class="form-control" name="pet_name" required />
+    </div>
+    <div class="mb-3">
+      <label>Clinic</label>
+      <input type="text" class="form-control" name="clinic" required />
+    </div>
+    <div class="mb-3">
+      <label>Date</label>
+      <input type="date" class="form-control" name="date" required />
+    </div>
+    <div class="mb-3">
+      <label>Notes</label>
+      <textarea class="form-control" name="notes"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Appointment</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
