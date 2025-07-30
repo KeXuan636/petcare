@@ -52,7 +52,10 @@
                         <th>Category</th>
                         <th>Vet</th>
                         <th>Amount ($)</th>
+<<<<<<< HEAD
                         <th>Action</th>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                     </tr>
                 </thead>
                 <tbody>
@@ -63,12 +66,15 @@
                             <td><%= e.categories %></td>
                             <td><%= e.vet %></td>
                             <td><%= e.amount %></td>
+<<<<<<< HEAD
                             <td>
                                 <form action="/deleteExpense/<%= e.id %>" method="POST" class="d-inline">
                                     <input type="hidden" name="user_id" value="<%= userId %>">
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this expense?')">Delete</button>
                                 </form>
                             </td>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                         </tr>
                     <% }) %>
                 </tbody>
@@ -90,7 +96,10 @@
                         <th>Clinic</th>
                         <th>Date</th>
                         <th>Notes</th>
+<<<<<<< HEAD
                         <th>Action</th>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                     </tr>
                 </thead>
                 <tbody>
@@ -101,12 +110,15 @@
                             <td><%= a.clinic %></td>
                             <td><%= a.date.toISOString().slice(0, 10) %></td>
                             <td><%= a.notes || '—' %></td>
+<<<<<<< HEAD
                             <td>
                                 <form action="/deleteAppointment/<%= a.id %>" method="POST" class="d-inline">
                                     <input type="hidden" name="user_id" value="<%= userId %>">
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this appointment?')">Delete</button>
                                 </form>
                             </td>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                         </tr>
                     <% }) %>
                 </tbody>
@@ -128,7 +140,10 @@
                         <th>Routine Type</th>
                         <th>Date</th>
                         <th>Notes</th>
+<<<<<<< HEAD
                         <th>Action</th>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                     </tr>
                 </thead>
                 <tbody>
@@ -139,12 +154,15 @@
                             <td><%= r.routine_type %></td>
                             <td><%= r.date.toISOString().slice(0, 10) %></td>
                             <td><%= r.notes || '—' %></td>
+<<<<<<< HEAD
                             <td>
                                 <form action="/deleteRoutine/<%= r.id %>" method="POST" class="d-inline">
                                     <input type="hidden" name="user_id" value="<%= userId %>">
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this routine?')">Delete</button>
                                 </form>
                             </td>
+=======
+>>>>>>> a5782b195d246171f98da3e29c8efaea211f2e7e
                         </tr>
                     <% }) %>
                 </tbody>
