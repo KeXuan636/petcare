@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    contact VARCHAR(20) NOT NULL,
+    contact INT(20) NOT NULL,
     role VARCHAR(20) NOT NULL
 );
 
