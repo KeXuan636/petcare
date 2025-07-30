@@ -11,71 +11,31 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS expenses (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
     pet_name VARCHAR(100) NOT NULL,
     categories VARCHAR(100) NOT NULL,
     vet VARCHAR(100) NOT NULL,
-    amount DECIMAL(10,2),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    amount DECIMAL(10,2)
 );
 
 CREATE TABLE IF NOT EXISTS appointments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
     pet_name VARCHAR(100) NOT NULL,
     clinic VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
-    notes TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    notes TEXT
 );
 
 CREATE TABLE IF NOT EXISTS care_routines (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
     pet_name VARCHAR(100) NOT NULL,
     routine_type VARCHAR(100) NOT NULL,
     date DATE NOT NULL,
-    notes TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    notes TEXT
 );
-
--- Insert sample categories
-INSERT INTO categories (name) VALUES
-('Food & Supplies'),
-('Healthcare'),
-('Grooming & Hygiene'),
-('Boarding & Daycare'),
-('Training & Behavior'),
-('Licensing & Identification'),
-('Miscellaneous / Other');
-
--- Insert sample users
-INSERT INTO users (username, email, password, address, contact, role)
-VALUES 
-('alice123', 'alice@example.com', SHA1('password123'), '123 Pet Lane', '91234567', 'user'),
-('admin01', 'admin@example.com', SHA1('adminpass'), '456 Admin Road', '98765432', 'admin');
-
--- Insert sample appointments
-INSERT INTO appointments (user_id, pet_name, clinic, date, notes)
-VALUES
-(1, 'Buddy', 'Happy Tails Vet Clinic', '2025-08-05', 'Annual vaccination'),
-(1, 'Luna', 'Pawfect Health Clinic', '2025-08-10', 'Dental check-up');
-
--- Insert sample expenses
-INSERT INTO expenses (user_id, pet_name, categories, vet, amount)
-VALUES
-(1, 'Buddy', 'Healthcare', 'Happy Tails Vet Clinic', 120.50),
-(1, 'Luna', 'Food & Supplies', 'N/A', 45.90);
-
--- Insert sample care routines
-INSERT INTO care_routines (user_id, pet_name, routine_type, date, notes)
-VALUES
-(1, 'Buddy', 'Grooming', '2025-08-01', 'Full bath and nail trim'),
-(1, 'Luna', 'Exercise', '2025-08-03', 'Evening park walk');
