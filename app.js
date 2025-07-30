@@ -261,6 +261,38 @@ app.post('/deleteRoutine/:id', checkAuthenticated, (req, res) => {
     });
 });
 
+//Search + FIlter 
+app.get('/search', (req, res) => {
+  const { query, category } = req.query;
+  let sql = 'SELECT * FROM items WHERE 1=1';
+  const params = [];
+
+  if (query) {
+    sql += ' AND name LIKE ?';
+    params.push(`%${query}%`);
+  }
+
+  if (category) {
+    sql += ' AND category_id = ?';
+    params.push(category);
+  }
+
+  db.query(sql, params, (err, items) => {
+    if (err) return res.status(500).send(err);
+
+    items = items.map(item => ({
+      ...item,
+      price: parseFloat(item.price)
+    }));
+
+    db.query('SELECT * FROM categories', (err, categories) => {
+      if (err) return res.status(500).send(err);
+
+      res.render('searchfilter', { items, categories, query, category });
+    });
+  });
+});
+
 // Admin: Delete a user and all their records
 app.post('/admin/delete-user/:id', checkAuthenticated, checkAdmin, (req, res) => {
     const userId = parseInt(req.params.id);
