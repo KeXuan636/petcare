@@ -89,13 +89,27 @@ const validateRegistration = (req, res, next) => {
 
 app.post('/register', validateRegistration, (req, res) => {
     const { username, email, password, address, contact, role } = req.body;
-    const sql = 'INSERT INTO users (username, email, password, address, contact, role) VALUES (?, ?, SHA1(?), ?, ?, ?)';
-    db.query(sql, [username, email, password, address, contact, role], (err) => {
+
+    // Check if email already exists
+    db.query('SELECT id FROM users WHERE email = ?', [email], (err, results) => {
         if (err) throw err;
-        req.flash('success', 'Registration successful! Please log in.');
-        res.redirect('/login');
+
+        if (results.length > 0) {
+            req.flash('error', 'Email is already registered.');
+            req.flash('formData', req.body);
+            return res.redirect('/register');
+        }
+
+        // If email is not taken, insert user
+        const sql = 'INSERT INTO users (username, email, password, address, contact, role) VALUES (?, ?, SHA1(?), ?, ?, ?)';
+        db.query(sql, [username, email, password, address, contact, role], (err2) => {
+            if (err2) throw err2;
+            req.flash('success', 'Registration successful! Please log in.');
+            res.redirect('/login');
+        });
     });
 });
+
 
 // ADMIN: Dashboard
 app.get("/admin", checkAuthenticated, checkAdmin, (req, res) => {
