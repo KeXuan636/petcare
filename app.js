@@ -296,6 +296,8 @@ app.post('/admin/delete-user/:id', checkAuthenticated, checkAdmin, (req, res) =>
     });
 });
 
+
+
 // Logout
 app.get('/logout', (req, res) => {
     req.session.destroy();

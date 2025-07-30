@@ -45,11 +45,12 @@
         <table class="table table-bordered table-hover text-center">
             <thead class="table-light">
                 <tr>
-                    <th style="width: 5%;">ID</th>
-                    <th style="width: 25%;">Pet Name</th>
-                    <th style="width: 25%;">Category</th>
-                    <th style="width: 25%;">Vet</th>
-                    <th style="width: 20%;">Amount ($)</th>
+                    <th>ID</th>
+                    <th>Pet Name</th>
+                    <th>Category</th>
+                    <th>Vet</th>
+                    <th>Amount ($)</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,11 @@
                         <td><%= e.categories %></td>
                         <td><%= e.vet %></td>
                         <td><%= e.amount %></td>
+                        <td>
+                            <form action="/deleteExpense/<%= e.id %>" method="POST" onsubmit="return confirm('Delete this expense?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
@@ -77,11 +83,12 @@
         <table class="table table-bordered table-hover text-center">
             <thead class="table-light">
                 <tr>
-                    <th style="width: 5%;">ID</th>
-                    <th style="width: 25%;">Pet Name</th>
-                    <th style="width: 25%;">Clinic</th>
-                    <th style="width: 15%;">Date</th>
-                    <th style="width: 30%;">Notes</th>
+                    <th>ID</th>
+                    <th>Pet Name</th>
+                    <th>Clinic</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,6 +99,11 @@
                         <td><%= a.clinic %></td>
                         <td><%= a.date.toISOString().slice(0, 10) %></td>
                         <td><%= a.notes || '—' %></td>
+                        <td>
+                            <form action="/deleteAppointment/<%= a.id %>" method="POST" onsubmit="return confirm('Delete this appointment?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
@@ -109,11 +121,12 @@
         <table class="table table-bordered table-hover text-center">
             <thead class="table-light">
                 <tr>
-                    <th style="width: 5%;">ID</th>
-                    <th style="width: 25%;">Pet Name</th>
-                    <th style="width: 25%;">Routine Type</th>
-                    <th style="width: 15%;">Date</th>
-                    <th style="width: 30%;">Notes</th>
+                    <th>ID</th>
+                    <th>Pet Name</th>
+                    <th>Routine Type</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -124,6 +137,11 @@
                         <td><%= r.routine_type %></td>
                         <td><%= r.date.toISOString().slice(0, 10) %></td>
                         <td><%= r.notes || '—' %></td>
+                        <td>
+                            <form action="/deleteRoutine/<%= r.id %>" method="POST" onsubmit="return confirm('Delete this routine?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
