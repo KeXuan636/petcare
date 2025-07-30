@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Care Journal - User Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/">🐾 PetCare Journal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Welcome, <%= user.username %>!</h1>
+
+<!-- User Expenses Table -->
+<div class="card mb-4 shadow rounded">
+    <div class="card-header bg-primary-subtle text-dark d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Your Expenses</h4>
+        <a href="/addexpense" class="btn btn-primary btn-sm">Add</a>
+    </div>
+    <div class="card-body table-responsive bg-white">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th style="width: 25%;">Pet Name</th>
+                    <th style="width: 25%;">Category</th>
+                    <th style="width: 25%;">Vet</th>
+                    <th style="width: 20%;">Amount ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% expenses.forEach(e => { %>
+                    <tr>
+                        <td><%= e.id %></td>
+                        <td><%= e.pet_name %></td>
+                        <td><%= e.categories %></td>
+                        <td><%= e.vet %></td>
+                        <td><%= e.amount %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- User Appointments Table -->
+<div class="card mb-4 shadow rounded">
+    <div class="card-header bg-success-subtle text-dark d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Your Appointments</h4>
+        <a href="/addappointment" class="btn btn-success btn-sm">Add</a>
+    </div>
+    <div class="card-body table-responsive bg-white">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th style="width: 25%;">Pet Name</th>
+                    <th style="width: 25%;">Clinic</th>
+                    <th style="width: 15%;">Date</th>
+                    <th style="width: 30%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% appointments.forEach(a => { %>
+                    <tr>
+                        <td><%= a.id %></td>
+                        <td><%= a.pet_name %></td>
+                        <td><%= a.clinic %></td>
+                        <td><%= a.date.toISOString().slice(0, 10) %></td>
+                        <td><%= a.notes || '—' %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- User Care Routines Table -->
+<div class="card mb-4 shadow rounded">
+    <div class="card-header bg-warning-subtle text-dark d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Your Care Routines</h4>
+        <a href="/addcareroutine" class="btn btn-warning btn-sm">Add</a>
+    </div>
+    <div class="card-body table-responsive bg-white">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th style="width: 25%;">Pet Name</th>
+                    <th style="width: 25%;">Routine Type</th>
+                    <th style="width: 15%;">Date</th>
+                    <th style="width: 30%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% routines.forEach(r => { %>
+                    <tr>
+                        <td><%= r.id %></td>
+                        <td><%= r.pet_name %></td>
+                        <td><%= r.routine_type %></td>
+                        <td><%= r.date.toISOString().slice(0, 10) %></td>
+                        <td><%= r.notes || '—' %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
