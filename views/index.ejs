@@ -23,7 +23,7 @@
             <ul class="navbar-nav ms-auto">
                 <% if (user) { %>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/view">View</a>
+                        <a class="nav-link text-white" href="<%= user.role === 'admin' ? '/admin' : '/user' %>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/logout">Logout</a>
